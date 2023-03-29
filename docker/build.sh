@@ -14,7 +14,7 @@ VERSION=$(cat package.json \
   | awk -F: '{ print $2 }' \
   | sed 's/[",]//g' \
   | sed 's/ //g')
-GITUSER=257042641977.dkr.ecr.us-west-2.amazonaws.com
+GITUSER=886360478228.dkr.ecr.us-west-2.amazonaws.com
 GITREPO=substrate-telemetry-frontend
 
 # Build the image
