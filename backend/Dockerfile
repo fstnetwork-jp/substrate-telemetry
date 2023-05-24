@@ -9,8 +9,12 @@ RUN cargo build --${PROFILE} --bins
 
 # MAIN IMAGE FOR PEOPLE TO PULL --- small one#
 FROM docker.io/debian:buster-slim
-LABEL maintainer="Parity Technologies"
-LABEL description="Substrate Telemetry Backend shard/core binaries, static build"
+LABEL description="Container image for THXNET." \
+    io.thxnet.image.type="final" \
+    io.thxnet.image.authors="contact@thxlab.io" \
+    io.thxnet.image.vendor="thxlab.io" \
+    io.thxnet.image.description="THXNET.: Blockchain Telemetry Backend" \
+    org.opencontainers.image.source="https://github.com/thxnet/blockchain-telemetry-backend"
 
 ARG PROFILE=release
 WORKDIR /usr/local/bin
