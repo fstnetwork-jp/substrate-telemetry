@@ -1,7 +1,5 @@
 #### BUILDER IMAGE  ####
 FROM docker.io/node:18 as builder
-LABEL maintainer="Chevdor <chevdor@gmail.com>"
-LABEL description="Substrate Telemetry Frontend builder image"
 
 WORKDIR /opt/builder
 
@@ -10,9 +8,13 @@ COPY . .
 RUN npm install && npm run build
 
 #### OUTPUT IMAGE ####
-FROM docker.io/nginx:stable-alpine
-LABEL maintainer="Chevdor <chevdor@gmail.com>"
-LABEL description="Substrate Telemetry Frontend"
+FROM docker.io/nginx:stable-alpine as blockchain-telemetry-frontend
+LABEL description="Container image for THXNET." \
+    io.thxnet.image.type="final" \
+    io.thxnet.image.authors="contact@thxlab.io" \
+    io.thxnet.image.vendor="thxlab.io" \
+    io.thxnet.image.description="THXNET.: Blockchain Telemetry Frontend" \
+    org.opencontainers.image.source="https://github.com/thxnet/blockchain-telemetry-frontend"
 
 # Each time this container is ran, the value that's provided for this env var
 # determines where the frontend will try to request feed information from:
