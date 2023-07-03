@@ -3,8 +3,11 @@ name: Frontend Integration
 on:
   push:
     branches:
-      - master
+      - main
       - develop
+      - release/*
+    tags:
+      - v*
   pull_request:
 
 env:
@@ -14,7 +17,7 @@ env:
 defaults:
   run:
     working-directory: ./frontend
-  
+
 concurrency:
   group: image-${{ github.ref }}
   cancel-in-progress: true
@@ -30,8 +33,6 @@ jobs:
       fail-fast: false
       matrix:
         mode:
-          # NOTE: skip debug build because it takes too long
-          # - debug
           - release
     outputs:
       version: ${{ steps.meta.outputs.version }}
